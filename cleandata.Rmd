@@ -1,0 +1,58 @@
+---
+title: "Untitled"
+author: "Sumitra"
+date: "4/28/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(fs)
+library(sf)
+
+
+path_1 <- "~/Documents/DataViz_2021/ShinyApps/Homelessness/data/2007-2019-PIT-Counts-by-State.xlsx"
+path_2 <- "~/Documents/DataViz_2021/ShinyApps/Homelessness/data/2007-2019-HIC-Counts-by-State.xlsx"
+
+
+point_data <- path_1 %>%
+  excel_sheets() %>%
+  set_names() %>%
+  map_df(read_excel, path = path_1, .id = "year")
+
+housing_data <- path_2 %>%
+  excel_sheets() %>%
+  set_names() %>%
+  map_df(read_excel, path = path_2, .id = "year")
+
+
+
+
+write_rds(x = point_data, path = "~/Documents/DataViz_2021/ShinyApps/Homelessness/data/point_data.rds")
+write_rds(x = housing_data, path = "~/Documents/DataViz_2021/ShinyApps/Homelessness/data/housing_data.rds")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
